@@ -1,0 +1,48 @@
+.burder-main {
+	@extend %clearfix;
+	position: absolute;
+	align-items: center; 
+	display: flex;
+	min-width: 960px;
+	top: 50%;
+	left: 51.7%;
+	transform: translate(-50%, -50%);
+
+	z-index: 10;
+	
+	&__img {
+		width: 452px;
+		
+		@include tablets() { 
+			width: 335px;
+			margin-bottom: 20px;
+		}
+
+	}
+
+	&__info {
+		padding-left: 20px;
+		text-align: left;
+		width: calc(100% - 452px);
+		
+		@include tablets() {
+			text-align: center;
+			padding-left: 0;
+		}
+	}
+
+	&__text {
+		line-height: 0.9;
+		color: #fff;
+		font-family: 'Lifehack-Medium';
+		font-size: rem(65px);
+	}
+
+	@include tablets() {
+		flex-direction: column; 
+
+	}
+}
+
+
+

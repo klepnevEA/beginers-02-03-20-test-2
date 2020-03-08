@@ -1,0 +1,63 @@
+body > .scroll-element,
+body > .scroll-element div
+{
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    z-index: 10;
+}
+ 
+body > .scroll-element div {
+    display: block;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+ 
+body > .scroll-element.scroll-x {
+    bottom: 2px;
+    height: 8px;
+    left: 0;
+    width: 100%;
+}
+ 
+body > .scroll-element.scroll-y {
+    height: 100%;
+    right: 0px;
+    top: 0;
+    width: 3px;
+}
+ 
+body > .scroll-element .scroll-element_outer {
+    overflow: hidden;
+}
+ 
+body > .scroll-element .scroll-element_outer,
+body > .scroll-element .scroll-element_track,
+body > .scroll-element .scroll-bar {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+     
+}
+
+body > .scroll-element .scroll-bar {
+	background-color: #000;
+}
+ 
+body > .scroll-element .scroll-element_track { background-color: transparent; }
+body > .scroll-element .scroll-bar { background-color: #c2c2c2; }
+body > .scroll-element:hover .scroll-bar { background-color: #c2c2c2; }
+body > .scroll-element.scroll-draggable .scroll-bar { background-color: #c2c2c2; }
+ 
+ 
+/* update scrollbar offset if both scrolls are visible */
+ 
+body > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_track { left: -12px; }
+body > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_track { top: -12px; }
+ 
+ 
+body > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size { left: -12px; }
+body > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size { top: -12px; }

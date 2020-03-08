@@ -1,0 +1,63 @@
+.reviews {
+	height: 100%;
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		align-content: space-between;
+		height: 100%;
+	}
+
+	&__elem {
+		position: relative;
+		width: 25%;
+		height: 50%;
+
+		&:hover {
+			.reviews {
+				&__picture {
+					filter: grayscale(100%)  brightness(50%);
+				}
+			}
+		}
+	}
+
+
+	&__picture {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		transition: 0.3s;
+
+		filter: grayscale(100%) brightness(100%);
+	}
+
+	&__info {
+		position: relative;
+		padding: 40px 20px;
+	}
+
+	&__name {
+		color: #fff;
+		font-family: 'Gagalin-Regular';
+		font-size: 14px;
+		margin-bottom: 10px;
+		text-align: left;
+	}
+
+	&__text {
+		font-family: 'Ubuntu-Light';
+		color: #fff;
+		font-size: 14px;
+		text-align: left;
+		line-height: 1.5;
+		margin-bottom: 20px;
+		max-height: 295px;
+		overflow: hidden;
+	}
+}

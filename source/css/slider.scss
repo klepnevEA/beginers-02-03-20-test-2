@@ -1,0 +1,174 @@
+.slider {
+    position: relative;
+    display: flex;
+    min-width: 940px;
+    width: 100%;
+    height: 475px;
+}
+
+.slider__arrow {
+    position: absolute;
+    top: 50%;
+    width: 27px;
+    height: 16px;
+    fill: #fff;
+
+    &_left {
+        left: -20px;
+        transform: translate(0, -50%) rotate(90deg);
+    }
+
+    &_right {
+        right: -20px;
+        transform: translate(0, -50%) rotate(-90deg);
+    }
+}
+
+.slider__icon {
+    width: 100%;
+    height: 100%;
+}
+
+.slider__list {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.slider__elem {
+    display: inline-flex !important;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.slider__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.slider__img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.slider__title {
+    line-height: 63px;
+    margin-bottom: 30px;
+}
+
+.slider__text {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.slider__info {
+    display: flex;
+    align-items: flex-end;
+}
+
+.slider__cost {
+    color: $orange;
+    font-size: 30px;
+    margin-right: 30px;
+    line-height: 30px;
+
+    span {
+        font-size: 70px;
+    }
+}
+
+.slick-list,
+.slick-track,
+.slick-slide,
+.slick-slide > div  {
+    height: 100%;
+}
+
+
+.composition {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &:hover {
+        .composition__drop-table {
+            left: 90px;
+            opacity: 1;
+        }
+    }
+}
+
+.composition__btn {
+    width: 90px;
+    height: 90px;
+    border-radius: 5px;
+    background-color: rgba($orange, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.composition__btn-icon {
+    width: 46px;
+    height: 46px;
+    fill: #fff;
+
+    .icon {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.composition__title {
+    font-size: 14px;
+    color: #fff;
+}
+
+.composition__drop-table {
+    position: absolute;
+    top: 0;
+    left: -1000px;
+    background-color: rgba(#fff, 0.9);
+    border-radius: 5px;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+.composition__list {
+    display: table;
+}
+
+.composition__elem {
+    display: table-row;
+}
+
+
+.composition__icon,
+.composition__text,
+.composition__weight {
+    display: table-cell;
+    vertical-align: middle;
+    height: 50px;
+    padding: 10px;
+}
+
+.composition__icon {
+    fill: $orange;
+    .icon {
+        width: 60px;
+        height: 50px;
+    }
+}
+

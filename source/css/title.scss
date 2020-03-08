@@ -1,0 +1,23 @@
+.title {
+	line-height: 1.2;
+	margin-bottom: 20px;
+	color: $ellow;
+	font-size: rem(72px);
+	font-family: 'Gagalin-Regular';
+	text-transform: uppercase;
+	
+	&_center {
+		text-align: center;
+	}
+
+	&_white {
+		color: #fff;
+	}
+
+	&_black {
+		color: $black;
+	}
+}
+
+
+
