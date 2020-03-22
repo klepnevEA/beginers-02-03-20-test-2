@@ -1,103 +1,73 @@
 
 function ready() {
 
-    $('.slider__list').slick({
-        prevArrow: $('.slider__arrow_left'),
-        nextArrow: $('.slider__arrow_right')
-    });
+    /*----------------------mobile-menu--------------------*/
 
-    $('#fullpage').fullpage({
-        menu: '#navigation__list',
-    });
-
-
-    const myForm = document.querySelector('#myForm');
-    const sendBtn = document.querySelector('#button-send');
-    const popup = document.querySelector('#popup');
-
-    const sendform = (e) => {
+    let openMenu = (e) => {
         e.preventDefault();
-        if(chechVal(myForm)) {
-            const data = {
-                name: myForm.elements.name.value,
-                phone: myForm.elements.phone.value,
-                comment: myForm.elements.comment.value,
-                to: 'klepnev@yandex.ru'
-            }
-            const xhr = new XMLHttpRequest();
-            
-            xhr.responseType = 'json';
-            xhr.open('POST', 'https://webdev-api.loftschool.com/sendmail');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.send(JSON.stringify(data));
-            xhr.addEventListener('load', () => {
-                if(xhr.response.status) {
-                    popup.classList.add('active');
-                    popup.innerText = 'Все ок'
-                    console.log('Все ок');
-                } 
-            })
-        };
-        
+        mobileMenu.classList.add('mobile-menu--active');
     }
 
-    const chechVal = (form) => {
-        let valid = true;
-
-        if(!chechValFild(form.elements.name)) {
-            valid = false;
-        }
-
-        if(!chechValFild(form.elements.phone)) {
-            valid = false;
-        }
-
-        if(!chechValFild(form.elements.street)) {
-            valid = false;
-        }
-
-        if(!chechValFild(form.elements.house)) {
-            valid = false;
-        }
-
-        if(!chechValFild(form.elements.float)) {
-            valid = false;
-        }
-
-        if(!chechValFild(form.elements.appartament)) {
-            valid = false;
-        }
-        return valid;
+    let closeMenu = (e) => {
+        e.preventDefault();
+        mobileMenu.classList.remove('mobile-menu--active');
     }
 
-    const chechValFild = (field) => {
-        if(!field.checkValidity()) {
-            field.parentNode.nextElementSibling.textContent = field.validationMessage;
-            return false
-        }
-        else {
-            field.parentNode.nextElementSibling.textContent = '';
-            return true;
-        }
-        // field.parentNode.nextElementSibling.textContent = field.validationMessage;
-        // return field.checkValidity();
+
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu__close');
+
+    mobileNav.addEventListener('click', openMenu);
+    mobileMenuClose.addEventListener('click', closeMenu);
+
+
+    /*---------------------reviews-----------------------*/
+
+    let openPopup = (e) => {
+        e.preventDefault();
+        popup.classList.add('popup--open');
     }
 
-    
-
-    sendBtn.addEventListener('click', sendform);
-
+    const btnReviews = document.getElementsByClassName('btn-reviews');
+    const popup = document.getElementById('popup');
 
 
+    for(let i = 0; i < btnReviews.length; i++) {
+        btnReviews[i].addEventListener('click', openPopup);
+    }
 
 
+    /*---------------------accordion-----------------------*/
+
+    let openAccordion = (e) => {
+        e.preventDefault();
+
+        if(e.target.closest('.accirdion-menu__elem').classList.contains('accirdion-menu__elem--active')) {
+            for(let i = 0; i < accirdionMenuElem.length; i++) {
+                accirdionMenuElem[i].classList.remove('accirdion-menu__elem--active');
+            };
+        } else {
+            for(let i = 0; i < accirdionMenuElem.length; i++) {
+                accirdionMenuElem[i].classList.remove('accirdion-menu__elem--active');
+            };
+            e.target.closest('.accirdion-menu__elem').classList.add('accirdion-menu__elem--active');
+        }
+    }
+
+    const accirdionMenuElem = document.getElementsByClassName('accirdion-menu__elem');
+
+    for(let i = 0; i < accirdionMenuElem.length; i++) {
+        accirdionMenuElem[i].addEventListener('click', openAccordion);
+    }  
+
+
+    /*------------map-------------------*/
 
     ymaps.ready(function () {
         var myMap = new ymaps.Map('map', {
-                center: [51.529230, 46.035090],
+                center: [50.751574, 37.573856],
                 zoom: 9
-            }, {
-                searchControlProvider: 'yandex#search'
             }),
     
             // Создаём макет содержимого.
@@ -106,8 +76,8 @@ function ready() {
             ),
     
             myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-                hintContent: 'Собственный значок метки!!!!',
-                balloonContent: 'Это красивая метка!!!'
+                hintContent: 'Собственный значок метки',
+                balloonContent: 'Это красивая метка'
             }, {
                 // Опции.
                 // Необходимо указать данный тип макета.
@@ -115,13 +85,13 @@ function ready() {
                 // Своё изображение иконки метки.
                 iconImageHref: '../img/icons/map-marker.svg',
                 // Размеры метки.
-                iconImageSize: [30, 42],
+                iconImageSize: [48, 48],
                 // Смещение левого верхнего угла иконки относительно
                 // её "ножки" (точки привязки).
-                iconImageOffset: [-30, -42]
+                iconImageOffset: [-15, -38]
             }),
     
-            myPlacemarkWithContent = new ymaps.Placemark([51.599230, 46.135090], {
+            myPlacemarkWithContent = new ymaps.Placemark([50.751574, 36.573856], {
                 hintContent: 'Собственный значок метки с контентом',
                 balloonContent: 'А эта — новогодняя'
             }, {
@@ -131,14 +101,17 @@ function ready() {
                 // Своё изображение иконки метки.
                 iconImageHref: '../img/icons/map-marker.svg',
                 // Размеры метки.
-                iconImageSize: [30, 42],
+                iconImageSize: [48, 48],
                 // Смещение левого верхнего угла иконки относительно
                 // её "ножки" (точки привязки).
                 iconImageOffset: [-24, -24],
                 // Смещение слоя с содержимым относительно слоя с картинкой.
-                iconContentOffset: [15, 15]
-            }),
-            myPlacemarkWithContent2 = new ymaps.Placemark([51.699230, 46.235090], {
+                iconContentOffset: [15, 15],
+                // Макет содержимого.
+                iconContentLayout: MyIconContentLayout
+            });
+
+            myPlacemarkWithContent2 = new ymaps.Placemark([51.751574, 38.573856], {
                 hintContent: 'Собственный значок метки с контентом',
                 balloonContent: 'А эта — новогодняя'
             }, {
@@ -148,12 +121,14 @@ function ready() {
                 // Своё изображение иконки метки.
                 iconImageHref: '../img/icons/map-marker.svg',
                 // Размеры метки.
-                iconImageSize: [30, 42],
+                iconImageSize: [48, 48],
                 // Смещение левого верхнего угла иконки относительно
                 // её "ножки" (точки привязки).
                 iconImageOffset: [-24, -24],
                 // Смещение слоя с содержимым относительно слоя с картинкой.
-                iconContentOffset: [15, 15]
+                iconContentOffset: [15, 15],
+                // Макет содержимого.
+                iconContentLayout: MyIconContentLayout
             });
     
         myMap.geoObjects
@@ -161,6 +136,7 @@ function ready() {
             .add(myPlacemarkWithContent)
             .add(myPlacemarkWithContent2);
     });
+   
 };  
 
 document.addEventListener("DOMContentLoaded", ready);
